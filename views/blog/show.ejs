@@ -1,0 +1,46 @@
+<% layout("layout/boilerplate") %>
+    <div class="container col-6">
+        <h3 class="my-3">
+            <%= blog.title %>
+        </h3>
+        <div class="mb-3">
+            <%= blog.data %>
+        </div>
+        <div class="text-end">
+            -<%= blog.author.username %>
+        </div>
+        <a class="btn btn-info" href="/blog/<%= blog._id %>/edit">Edit</a>
+        <form class="d-inline" action="/blog/<%= blog._id  %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+
+
+        <h4 class="my-3">Add New Comment</h4>
+        <form class="mb-3" action="/blog/<%= blog._id %>/comment" method="POST">
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="" id="data" style="height: 100px"
+                    name="comment[data]"></textarea>
+                <label for="data">Comment</label>
+            </div>
+            <button type="submit" class="btn btn-success">Add Comment</button>
+        </form>
+
+        <ul>
+            <% for(let comment of blog.comments) { %>
+                <div class="mb-2">
+                    <% if(comment) { %>
+                        <li>
+                            <%= comment.data %>
+                                <% if(comment.author) { %>
+                                    <div class="d-inline"><em>-<%= comment.author.username %></em></div>
+                                    <% } %>
+                        </li>
+                        <% } %>
+                </div>
+                <form action="/blog/<%= blog._id %>/comment/<%= comment._id %>/?_method=DELETE" method="POST">
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                </form>
+                <% } %>
+        </ul>
+
+    </div>

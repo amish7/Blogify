@@ -1,0 +1,18 @@
+<% layout("layout/boilerplate") %>
+
+    <div class="container col-6 mt-3">
+        <h1>Create New Blog!</h1>
+
+        <form action="/blog/new" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="blog[title]">
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="" id="data" style="height: 100px"
+                    name="blog[data]"></textarea>
+                <label for="data">Blog Content</label>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
