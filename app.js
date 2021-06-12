@@ -14,6 +14,7 @@ const blogRoutes = require("./routes/blog");
 const userRoutes = require("./routes/user");
 const commentRoutes = require("./routes/comment");
 const { isLoggedIn, isAuthor } = require("./middleware");
+const ExpressError = require("./utils/ExpressError");
 
 mongoose.connect('mongodb://localhost:27017/blogify', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
@@ -62,6 +63,15 @@ app.use("/blog", blogRoutes);
 app.use("/user", userRoutes);
 app.use("/blog/:id/comment", commentRoutes);
 
+app.all("*", (req, res, next) => {
+    next(new ExpressError("Page Not Found!!", "404"));
+})
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+    res.status(statusCode).render('error', { err })
+})
 
 app.listen(3000, () => {
     console.log("SERVING ON PORT 3000");
