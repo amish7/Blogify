@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Blog = require("../models/blog");
+const Comment = require("../models/comment");
 const { isLoggedIn, isAuthor } = require("../middleware");
 
 
@@ -39,6 +40,10 @@ router.put("/:id", isLoggedIn, isAuthor, async (req, res) => {
     res.redirect(`/blog/${blog._id}`);
 })
 router.delete("/:id", isLoggedIn, isAuthor, async (req, res) => {
+    const blog = await Blog.findById(req.params.id).populate("comments");
+    for (let comment of blog.comments) {
+        await Comment.findByIdAndDelete(comment._id);
+    }
     await Blog.findByIdAndDelete(req.params.id);
     req.flash("success", "Blog successfully deleted!!");
     res.redirect("/blog");

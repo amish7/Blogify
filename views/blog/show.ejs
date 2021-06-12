@@ -16,11 +16,14 @@
 
 
         <h4 class="my-3">Add New Comment</h4>
-        <form class="mb-3" action="/blog/<%= blog._id %>/comment" method="POST">
+        <form class="mb-3 needs-validation" action="/blog/<%= blog._id %>/comment" method="POST" novalidate>
             <div class="form-floating mb-3">
-                <textarea class="form-control" placeholder="" id="data" style="height: 100px"
-                    name="comment[data]"></textarea>
+                <textarea class="form-control" placeholder="" id="data" style="height: 100px" name="comment[data]"
+                    required></textarea>
                 <label for="data">Comment</label>
+                <div class="invalid-feedback">
+                    Please enter a valid comment.
+                </div>
             </div>
             <button type="submit" class="btn btn-success">Add Comment</button>
         </form>
