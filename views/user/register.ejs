@@ -1,29 +1,19 @@
 <% layout("layout/boilerplate") %>
-    <!-- <form action="/user/register" method="POST">
-        <label for="email">E-Mail ID: </label>
-        <input type="email" name="email" id="email">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        <button type="submit">Create New Account</button>
-    </form> -->
-
     <div class="container col-6">
         <h1 class="text-center">Create New Account</h1>
-        <form action="/user/register" method="POST">
+        <form class="needs-validation" action="/user/register" method="POST" novalidate>
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="username" class="form-control" id="username" name="username">
+                <input type="username" class="form-control" id="username" name="username" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
