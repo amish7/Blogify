@@ -7,7 +7,7 @@
             <%= blog.data %>
         </div>
         <div class="text-end">
-            -<%= blog.author.username %>
+            <a href="/user/<%= blog.author._id %>">-<%= blog.author.username %></a>
         </div>
         <a class="btn btn-info" href="/blog/<%= blog._id %>/edit">Edit</a>
         <form class="d-inline" action="/blog/<%= blog._id  %>?_method=DELETE" method="POST">
@@ -55,7 +55,8 @@
                         <li>
                             <%= comment.data %>
                                 <% if(comment.author) { %>
-                                    <div class="d-inline"><em>-<%= comment.author.username %></em></div>
+                                    <div class="d-inline"><a href="/user/<%= comment.author._id %>"><em>-<%=
+                                                    comment.author.username %></em></a></div>
                                     <% } %>
                         </li>
                         <% } %>

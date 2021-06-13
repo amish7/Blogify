@@ -23,6 +23,8 @@ router.post("/new", isLoggedIn, upload.array("image"), catchAsync(async (req, re
         blog.images.push({ url: img.path, filename: img.filename });
     }
     await blog.save();
+    res.locals.currentUser.blogs.push(blog);
+    await res.locals.currentUser.save();
     req.flash("success", "Blog successfully created!!");
     res.redirect(`/blog/${blog._id}`);
 }))

@@ -1,7 +1,7 @@
 <% layout("layout/boilerplate") %>
     <div class="container col-6">
-        <h1 class="text-center">Login</h1>
-        <form class="needs-validation" action="/user/login" method="POST" novalidate>
+        <h1 class="text-center mb-3">Login</h1>
+        <form class="needs-validation mb-3" action="/user/login" method="POST" novalidate>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="username" class="form-control" id="username" name="username" required>
@@ -12,4 +12,8 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <div class="mb-3">
+            New User?
+            <a href="/user/register">Click here</a> to register.
+        </div>
     </div>

@@ -14,8 +14,13 @@ router.post("/register", catchAsync(async (req, res, next) => {
         username: username
     })
     const registeredUser = await User.register(user, password);
-    req.flash("success", `Welcome to Blogify, ${username}!!`);
-    res.redirect("/blog");
+    req.login(registeredUser, err => {
+        if (err) next(err);
+        else {
+            req.flash("success", `Welcome to Blogify, ${username}!!`);
+            res.redirect("/blog");
+        }
+    });
 }))
 router.get("/login", (req, res) => {
     res.render("./user/login");
@@ -28,5 +33,15 @@ router.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/blog");
 })
+router.get("/:id", catchAsync(async (req, res) => {
+    const user = await User.findById(req.params.id).populate("blogs");
+    if (!user) {
+        req.flash("error", "User not found!");
+        res.redirect("/blog");
+    }
+    else {
+        res.render("./user/profile", { user });
+    }
+}))
 
 module.exports = router;

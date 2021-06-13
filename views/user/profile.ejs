@@ -1,0 +1,25 @@
+<% layout("layout/boilerplate") %>
+    <div class="container">
+        <h3>Username: <%= user.username %>
+        </h3>
+        <h3>Total blogs by <%= user.username %>: <%= user.blogs.length %>
+        </h3>
+        <% if(user.blogs.length) { %>
+            <h3>List of all blogs by <%= user.username %>
+            </h3>
+            <% for(let blog of user.blogs) { %>
+
+                <div class="card mb-3" style="width: 50rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= blog.title %>
+                        </h5>
+                        <p class="card-text">
+                            <%= blog.data %>
+                        </p>
+                        <a href="/blog/<%= blog._id  %>">Read More</a>
+                    </div>
+                </div>
+                <% } %>
+                    <% } %>
+    </div>
