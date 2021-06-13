@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -15,6 +17,9 @@ const userRoutes = require("./routes/user");
 const commentRoutes = require("./routes/comment");
 const { isLoggedIn, isAuthor } = require("./middleware");
 const ExpressError = require("./utils/ExpressError");
+const multer = require("multer");
+const { storage } = require("./cloudinary/index");
+const upload = multer({ storage });
 
 mongoose.connect('mongodb://localhost:27017/blogify', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {

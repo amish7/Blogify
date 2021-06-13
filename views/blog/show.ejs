@@ -13,6 +13,26 @@
         <form class="d-inline" action="/blog/<%= blog._id  %>?_method=DELETE" method="POST">
             <button class="btn btn-danger" type="submit">Delete</button>
         </form>
+        <div id="controls" class="my-3 carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <% for(let i=0; i<blog.images.length; i++) { %>
+                    <div class="carousel-item <%= i==0?'active':'' %>">
+                        <img src="<%= blog.images[i].url %>" class="d-block w-100" alt="...">
+                    </div>
+
+                    <% } %>
+            </div>
+            <% if(blog.images.length>1) {%>
+                <button class="carousel-control-prev" type="button" data-bs-target="#controls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#controls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <% } %>
+        </div>
 
 
         <h4 class="my-3">Add New Comment</h4>

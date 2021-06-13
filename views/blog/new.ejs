@@ -3,7 +3,7 @@
     <div class="container col-6 mt-3">
         <h1>Create New Blog!</h1>
 
-        <form action="/blog/new" method="POST" class="needs-validation" novalidate>
+        <form action="/blog/new" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="blog[title]" required>
@@ -15,6 +15,10 @@
                 <div class="invalid-feedback">
                     Please enter content in the textarea.
                 </div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image(if any):</label>
+                <input class="form-control" id="image" type="file" name="image" multiple>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
