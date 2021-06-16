@@ -20,8 +20,13 @@ const ExpressError = require("./utils/ExpressError");
 const multer = require("multer");
 const { storage } = require("./cloudinary/index");
 const upload = multer({ storage });
+const MongoDBStore = require("connect-mongodb-session")(session);
 
-mongoose.connect('mongodb://localhost:27017/blogify', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+
+// const dbUrl = process.env.DB_URL;
+const dbUrl = "mongodb://localhost:27017/blogify";
+
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
         console.log("CONNECTED TO DATABASE");
     })
@@ -33,8 +38,17 @@ mongoose.connect('mongodb://localhost:27017/blogify', { useNewUrlParser: true, u
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+const secret = process.env.SECRET;
+
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
 const sessionConfig = {
-    secret: "thisisasecret",
+    store,
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -67,6 +81,10 @@ app.use((req, res, next) => {
 app.use("/blog", blogRoutes);
 app.use("/user", userRoutes);
 app.use("/blog/:id/comment", commentRoutes);
+
+app.get("/", (req, res) => {
+    res.render("./home");
+})
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found!!", "404"));
