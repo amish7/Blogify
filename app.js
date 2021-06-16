@@ -23,8 +23,8 @@ const upload = multer({ storage });
 const MongoDBStore = require("connect-mongodb-session")(session);
 
 
-// const dbUrl = process.env.DB_URL;
-const dbUrl = "mongodb://localhost:27017/blogify";
+const dbUrl = process.env.DB_URL;
+// const dbUrl = "mongodb://localhost:27017/blogify";
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
@@ -96,6 +96,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-app.listen(3000, () => {
-    console.log("SERVING ON PORT 3000");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`SERVING ON PORT ${port}`);
 });
