@@ -20,7 +20,7 @@ router.post("/", isLoggedIn, catchAsync(async (req, res, next) => {
     req.flash("success", "Comment successfully added!")
     res.redirect(`/blog/${blog._id}/`)
 }))
-router.delete("/:cid", isCommentAuthor, isLoggedIn, catchAsync(async (req, res, next) => {
+router.delete("/:cid", isLoggedIn, isCommentAuthor, catchAsync(async (req, res, next) => {
     const { id, cid } = req.params;
     const blog = await Blog.findByIdAndUpdate(id, { $pull: { comments: cid } });
     if (!blog) {
