@@ -1,9 +1,16 @@
 <% layout("layout/boilerplate") %>
+    <style>
+        @media screen and (min-width: 768px) {
+            .sizing {
+                width: 50rem;
+            }
+        }
+    </style>
     <% if(allBlogs.length) {%>
         <h1 class="text-center my-3">List of All Blogs</h1>
         <% for(let blog of allBlogs) { %>
 
-            <div class="card mb-3 mx-auto" style="width: 50rem;">
+            <div class="card mb-3 mx-auto sizing">
                 <div class="card-body">
                     <h5 class="card-title">
                         <%= blog.title %>
