@@ -20,7 +20,7 @@ const ExpressError = require("./utils/ExpressError");
 const multer = require("multer");
 const { storage } = require("./cloudinary/index");
 const upload = multer({ storage });
-const MongoDBStore = require("connect-mongodb-session")(session);
+const MongoStore = require('connect-mongo')(session);
 
 
 const dbUrl = process.env.DB_URL;
@@ -41,7 +41,7 @@ app.use(methodOverride("_method"));
 
 const secret = process.env.SECRET;
 
-const store = new MongoDBStore({
+const store = new MongoStore({
     url: dbUrl,
     secret,
     touchAfter: 24 * 60 * 60
