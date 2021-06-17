@@ -30,7 +30,8 @@ mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCr
     .then(() => {
         console.log("CONNECTED TO DATABASE");
     })
-    .catch(() => {
+    .catch((e) => {
+        console.log(e);
         console.log("CONNECTION FAILED");
     });
 
