@@ -20,8 +20,23 @@ Tech Stack which has been used are as follows:<br>
 5. Bootstrap v5.0.5 - This helped in creating the front-end and adding styles to our website.
 
 ## Local Installation
-1. Download the zip file of the code and extract the files.
-2. Open the terminal and install the dependencies by entering *npm i* into the terminal.
-3. Run the project by entering *npm start*.
-4. Now open the browser and search for *localhost:3000/*.<br>
-Note: The functionality of adding images to the blogs won't work in local instance of the project.
+* Download the zip file of the code and extract the files.
+* Open the terminal and install the dependencies by entering *npm install* into the terminal.
+```shell
+npm install
+```
+* Create a free <a href="https://cloudinary.com/">`Cloudinary account`</a>.
+* Create a .env file in the root directory.
+* Set up the required environment variables in the .env file: 
+```javascript
+DB_URL = // mongodb://localhost:27017/blogify
+CLOUDINARY_API_KEY= // Cloudinary API key
+CLOUDINARY_API_SECRET= // Cloudinary API secret
+CLOUDINARY_CLOUD_NAME= // Cloudinary cloud name
+SECRET- // "ANYTHINGCANBEHERE"
+```
+* Run the project by entering *npm start*.
+```shell
+npm start
+```
+* Now open the browser and search for *localhost:3000/*.<br>
