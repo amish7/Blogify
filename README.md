@@ -29,11 +29,11 @@ npm install
 * Create a .env file in the root directory.
 * Set up the required environment variables in the .env file: 
 ```javascript
-DB_URL = // mongodb://localhost:27017/blogify
+DB_URL= // mongodb://localhost:27017/blogify
 CLOUDINARY_API_KEY= // Cloudinary API key
 CLOUDINARY_API_SECRET= // Cloudinary API secret
 CLOUDINARY_CLOUD_NAME= // Cloudinary cloud name
-SECRET- // "ANYTHINGCANBEHERE"
+SECRET= // "ANYTHINGCANBEHERE"
 ```
 * Run the project by entering *npm start*.
 ```shell
